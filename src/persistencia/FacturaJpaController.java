@@ -5,20 +5,17 @@
  */
 package persistencia;
 
-import ControladorJPA.exceptions.IllegalOrphanException;
-import ControladorJPA.exceptions.NonexistentEntityException;
-import ControladorJPA.exceptions.PreexistingEntityException;
 import Logica.Factura;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Logica.Itempedido;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import persistencia.exceptions.NonexistentEntityException;
+import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
@@ -40,21 +37,7 @@ public class FacturaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Itempedido itempedido = factura.getItempedido();
-            if (itempedido != null) {
-                itempedido = em.getReference(itempedido.getClass(), itempedido.getFacturaId());
-                factura.setItempedido(itempedido);
-            }
             em.persist(factura);
-            if (itempedido != null) {
-                Factura oldFacturaOfItempedido = itempedido.getFactura();
-                if (oldFacturaOfItempedido != null) {
-                    oldFacturaOfItempedido.setItempedido(null);
-                    oldFacturaOfItempedido = em.merge(oldFacturaOfItempedido);
-                }
-                itempedido.setFactura(factura);
-                itempedido = em.merge(itempedido);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findFactura(factura.getFacturaId()) != null) {
@@ -68,38 +51,12 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
-    public void edit(Factura factura) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Factura factura) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Factura persistentFactura = em.find(Factura.class, factura.getFacturaId());
-            Itempedido itempedidoOld = persistentFactura.getItempedido();
-            Itempedido itempedidoNew = factura.getItempedido();
-            List<String> illegalOrphanMessages = null;
-            if (itempedidoOld != null && !itempedidoOld.equals(itempedidoNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Itempedido " + itempedidoOld + " since its factura field is not nullable.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (itempedidoNew != null) {
-                itempedidoNew = em.getReference(itempedidoNew.getClass(), itempedidoNew.getFacturaId());
-                factura.setItempedido(itempedidoNew);
-            }
             factura = em.merge(factura);
-            if (itempedidoNew != null && !itempedidoNew.equals(itempedidoOld)) {
-                Factura oldFacturaOfItempedido = itempedidoNew.getFactura();
-                if (oldFacturaOfItempedido != null) {
-                    oldFacturaOfItempedido.setItempedido(null);
-                    oldFacturaOfItempedido = em.merge(oldFacturaOfItempedido);
-                }
-                itempedidoNew.setFactura(factura);
-                itempedidoNew = em.merge(itempedidoNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -117,7 +74,7 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -128,17 +85,6 @@ public class FacturaJpaController implements Serializable {
                 factura.getFacturaId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The factura with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Itempedido itempedidoOrphanCheck = factura.getItempedido();
-            if (itempedidoOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Factura (" + factura + ") cannot be destroyed since the Itempedido " + itempedidoOrphanCheck + " in its itempedido field has a non-nullable factura field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(factura);
             em.getTransaction().commit();

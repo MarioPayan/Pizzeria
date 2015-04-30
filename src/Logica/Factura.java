@@ -6,18 +6,13 @@
 package Logica;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,14 +34,11 @@ public class Factura implements Serializable {
     @Column(name = "factura_id", nullable = false, length = 11)
     private String facturaId;
     @Basic(optional = false)
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    @Column(nullable = false, length = 50)
+    private String fecha;
     @Basic(optional = false)
     @Column(nullable = false)
     private float preciototal;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Itempedido itempedido;
 
     public Factura() {
     }
@@ -55,7 +47,7 @@ public class Factura implements Serializable {
         this.facturaId = facturaId;
     }
 
-    public Factura(String facturaId, Date fecha, float preciototal) {
+    public Factura(String facturaId, String fecha, float preciototal) {
         this.facturaId = facturaId;
         this.fecha = fecha;
         this.preciototal = preciototal;
@@ -69,11 +61,11 @@ public class Factura implements Serializable {
         this.facturaId = facturaId;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -83,14 +75,6 @@ public class Factura implements Serializable {
 
     public void setPreciototal(float preciototal) {
         this.preciototal = preciototal;
-    }
-
-    public Itempedido getItempedido() {
-        return itempedido;
-    }
-
-    public void setItempedido(Itempedido itempedido) {
-        this.itempedido = itempedido;
     }
 
     @Override

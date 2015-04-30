@@ -5,21 +5,18 @@
  */
 package persistencia;
 
-import ControladorJPA.exceptions.IllegalOrphanException;
-import ControladorJPA.exceptions.NonexistentEntityException;
-import ControladorJPA.exceptions.PreexistingEntityException;
+import Logica.Itempedido;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import Logica.Factura;
-import Logica.Itempedido;
 import Logica.Pizzabase;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import persistencia.exceptions.NonexistentEntityException;
+import persistencia.exceptions.PreexistingEntityException;
 
 /**
  *
@@ -36,40 +33,17 @@ public class ItempedidoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Itempedido itempedido) throws IllegalOrphanException, PreexistingEntityException, Exception {
-        List<String> illegalOrphanMessages = null;
-        Factura facturaOrphanCheck = itempedido.getFactura();
-        if (facturaOrphanCheck != null) {
-            Itempedido oldItempedidoOfFactura = facturaOrphanCheck.getItempedido();
-            if (oldItempedidoOfFactura != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("The Factura " + facturaOrphanCheck + " already has an item of type Itempedido whose factura column cannot be null. Please make another selection for the factura field.");
-            }
-        }
-        if (illegalOrphanMessages != null) {
-            throw new IllegalOrphanException(illegalOrphanMessages);
-        }
+    public void create(Itempedido itempedido) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Factura factura = itempedido.getFactura();
-            if (factura != null) {
-                factura = em.getReference(factura.getClass(), factura.getFacturaId());
-                itempedido.setFactura(factura);
-            }
             Pizzabase pizzaIdIngredienteId = itempedido.getPizzaIdIngredienteId();
             if (pizzaIdIngredienteId != null) {
                 pizzaIdIngredienteId = em.getReference(pizzaIdIngredienteId.getClass(), pizzaIdIngredienteId.getPizzaId());
                 itempedido.setPizzaIdIngredienteId(pizzaIdIngredienteId);
             }
             em.persist(itempedido);
-            if (factura != null) {
-                factura.setItempedido(itempedido);
-                factura = em.merge(factura);
-            }
             if (pizzaIdIngredienteId != null) {
                 pizzaIdIngredienteId.getItempedidoCollection().add(itempedido);
                 pizzaIdIngredienteId = em.merge(pizzaIdIngredienteId);
@@ -87,46 +61,19 @@ public class ItempedidoJpaController implements Serializable {
         }
     }
 
-    public void edit(Itempedido itempedido) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Itempedido itempedido) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Itempedido persistentItempedido = em.find(Itempedido.class, itempedido.getFacturaId());
-            Factura facturaOld = persistentItempedido.getFactura();
-            Factura facturaNew = itempedido.getFactura();
             Pizzabase pizzaIdIngredienteIdOld = persistentItempedido.getPizzaIdIngredienteId();
             Pizzabase pizzaIdIngredienteIdNew = itempedido.getPizzaIdIngredienteId();
-            List<String> illegalOrphanMessages = null;
-            if (facturaNew != null && !facturaNew.equals(facturaOld)) {
-                Itempedido oldItempedidoOfFactura = facturaNew.getItempedido();
-                if (oldItempedidoOfFactura != null) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("The Factura " + facturaNew + " already has an item of type Itempedido whose factura column cannot be null. Please make another selection for the factura field.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (facturaNew != null) {
-                facturaNew = em.getReference(facturaNew.getClass(), facturaNew.getFacturaId());
-                itempedido.setFactura(facturaNew);
-            }
             if (pizzaIdIngredienteIdNew != null) {
                 pizzaIdIngredienteIdNew = em.getReference(pizzaIdIngredienteIdNew.getClass(), pizzaIdIngredienteIdNew.getPizzaId());
                 itempedido.setPizzaIdIngredienteId(pizzaIdIngredienteIdNew);
             }
             itempedido = em.merge(itempedido);
-            if (facturaOld != null && !facturaOld.equals(facturaNew)) {
-                facturaOld.setItempedido(null);
-                facturaOld = em.merge(facturaOld);
-            }
-            if (facturaNew != null && !facturaNew.equals(facturaOld)) {
-                facturaNew.setItempedido(itempedido);
-                facturaNew = em.merge(facturaNew);
-            }
             if (pizzaIdIngredienteIdOld != null && !pizzaIdIngredienteIdOld.equals(pizzaIdIngredienteIdNew)) {
                 pizzaIdIngredienteIdOld.getItempedidoCollection().remove(itempedido);
                 pizzaIdIngredienteIdOld = em.merge(pizzaIdIngredienteIdOld);
@@ -163,11 +110,6 @@ public class ItempedidoJpaController implements Serializable {
                 itempedido.getFacturaId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The itempedido with id " + id + " no longer exists.", enfe);
-            }
-            Factura factura = itempedido.getFactura();
-            if (factura != null) {
-                factura.setItempedido(null);
-                factura = em.merge(factura);
             }
             Pizzabase pizzaIdIngredienteId = itempedido.getPizzaIdIngredienteId();
             if (pizzaIdIngredienteId != null) {

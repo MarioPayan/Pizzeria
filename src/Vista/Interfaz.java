@@ -12,6 +12,7 @@ import Controlador.ControladorVegetal;
 import persistencia.CarneJpaController;
 import Logica.Carne;
 import java.awt.Container;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,10 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import Logica.Factura;
+import java.util.Calendar;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -909,7 +914,39 @@ public final class Interfaz extends javax.swing.JFrame {
     private void jButtonComprarGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprarGenerarFacturaActionPerformed
         // TODO add your handling code here:
         System.out.println ("generar factura  ");
+        Calendar fecha = Calendar.getInstance();
         
+        String info = "Pizza "+StringListaElementosEscogidos[0];
+        for(int i=1;i<4;i++){if(StringListaElementosEscogidos[i]!=""){
+            info+= " + "+StringListaElementosEscogidos[i];
+        }}
+        float costo = 0;
+        costo += controlPizzaBase.buscarPizzabase(controlPizzaBase.encontrarIdPizza(jComboBoxPizza.getSelectedItem().toString())).getPrecio();
+        costo += controlCarne.buscarCarne(controlCarne.encontrarIdCarne(jComboBoxCarne.getSelectedItem().toString())).getPrecioporcion();
+        costo += controlSalsa.buscarSalsa(controlSalsa.encontrarIdSalsa(jComboBoxSalsas.getSelectedItem().toString())).getPrecioporcion();
+        costo += controlVerdura.buscarVegetal(controlVerdura.encontrarIdvegetal(jComboBoxVerduras.getSelectedItem().toString())).getPrecioporcion();
+        
+        int año = fecha.get(Calendar.YEAR);
+        int mes = fecha.get(Calendar.MONTH);
+        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        int hora = fecha.get(Calendar.HOUR_OF_DAY);
+        int minuto = fecha.get(Calendar.MINUTE);
+        int segundo = fecha.get(Calendar.SECOND);
+        String fecha1 = dia + "/" + mes+1 + "/" + año + "--";
+        fecha1 += hora + ":" + minuto + ":" + segundo;
+        
+        Factura factura = new Factura(fecha1, fecha1, costo);
+        
+        DefaultTableModel dataModel;
+        
+        dataModel = (DefaultTableModel) jTableFactura.getModel();
+        
+        dataModel.addRow(new Object[]{factura.getFecha(), info, factura.getPreciototal()});
+        
+        jTableFactura.setModel(dataModel);
+        
+
+
         
         Container contenedor = new Container();
          
