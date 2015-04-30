@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorJPA;
+package persistencia;
 
 import ControladorJPA.exceptions.NonexistentEntityException;
 import ControladorJPA.exceptions.PreexistingEntityException;
-import Logica.Carne;
+import Logica.Vegetal;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +21,9 @@ import javax.persistence.criteria.Root;
  *
  * @author kazemu
  */
-public class CarneJpaController implements Serializable {
+public class VegetalJpaController implements Serializable {
 
-    public CarneJpaController(EntityManagerFactory emf) {
+    public VegetalJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +32,16 @@ public class CarneJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Carne carne) throws PreexistingEntityException, Exception {
+    public void create(Vegetal vegetal) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(carne);
+            em.persist(vegetal);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findCarne(carne.getCarneId()) != null) {
-                throw new PreexistingEntityException("Carne " + carne + " already exists.", ex);
+            if (findVegetal(vegetal.getVegetalId()) != null) {
+                throw new PreexistingEntityException("Vegetal " + vegetal + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +51,19 @@ public class CarneJpaController implements Serializable {
         }
     }
 
-    public void edit(Carne carne) throws NonexistentEntityException, Exception {
+    public void edit(Vegetal vegetal) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            carne = em.merge(carne);
+            vegetal = em.merge(vegetal);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = carne.getCarneId();
-                if (findCarne(id) == null) {
-                    throw new NonexistentEntityException("The carne with id " + id + " no longer exists.");
+                String id = vegetal.getVegetalId();
+                if (findVegetal(id) == null) {
+                    throw new NonexistentEntityException("The vegetal with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +79,14 @@ public class CarneJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Carne carne;
+            Vegetal vegetal;
             try {
-                carne = em.getReference(Carne.class, id);
-                carne.getCarneId();
+                vegetal = em.getReference(Vegetal.class, id);
+                vegetal.getVegetalId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The carne with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The vegetal with id " + id + " no longer exists.", enfe);
             }
-            em.remove(carne);
+            em.remove(vegetal);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +95,19 @@ public class CarneJpaController implements Serializable {
         }
     }
 
-    public List<Carne> findCarneEntities() {
-        return findCarneEntities(true, -1, -1);
+    public List<Vegetal> findVegetalEntities() {
+        return findVegetalEntities(true, -1, -1);
     }
 
-    public List<Carne> findCarneEntities(int maxResults, int firstResult) {
-        return findCarneEntities(false, maxResults, firstResult);
+    public List<Vegetal> findVegetalEntities(int maxResults, int firstResult) {
+        return findVegetalEntities(false, maxResults, firstResult);
     }
 
-    private List<Carne> findCarneEntities(boolean all, int maxResults, int firstResult) {
+    private List<Vegetal> findVegetalEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Carne.class));
+            cq.select(cq.from(Vegetal.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +119,20 @@ public class CarneJpaController implements Serializable {
         }
     }
 
-    public Carne findCarne(String id) {
+    public Vegetal findVegetal(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Carne.class, id);
+            return em.find(Vegetal.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getCarneCount() {
+    public int getVegetalCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Carne> rt = cq.from(Carne.class);
+            Root<Vegetal> rt = cq.from(Vegetal.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

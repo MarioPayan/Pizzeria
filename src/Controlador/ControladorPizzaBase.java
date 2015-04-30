@@ -5,8 +5,8 @@
 package Controlador;
 
 
-import ControladorJPA.Conexion;
-import ControladorJPA.PizzabaseJpaController;
+import persistencia.Conexion;
+import persistencia.PizzabaseJpaController;
 import Logica.Pizzabase;
 import java.util.List;
 import javax.swing.JComboBox;

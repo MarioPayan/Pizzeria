@@ -125,7 +125,6 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jPanelActualizarCarne" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jComboBoxCarneCrud" min="-2" pref="228" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -146,11 +145,9 @@
                                       <Component id="jComboBoxCarneCrud" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButtonEliminarCarne" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="jPanelActualizarCarne" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanelCrearCarne" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                                  <EmptySpace pref="192" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -176,116 +173,6 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEliminarCarneActionPerformed"/>
                           </Events>
                         </Component>
-                        <Container class="javax.swing.JPanel" name="jPanelActualizarCarne">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                <TitledBorder>
-                                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                    <TitledBorder title="ACTUALIZAR"/>
-                                  </Border>
-                                </TitledBorder>
-                              </Border>
-                            </Property>
-                          </Properties>
-
-                          <Layout>
-                            <DimensionLayout dim="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane9" pref="699" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButtonActualizarCarne" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                            <DimensionLayout dim="1">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jScrollPane9" min="-2" pref="54" max="-2" attributes="0"/>
-                                      <EmptySpace pref="12" max="32767" attributes="0"/>
-                                      <Component id="jButtonActualizarCarne" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                          </Layout>
-                          <SubComponents>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane9">
-                              <AuxValues>
-                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                              </AuxValues>
-
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTableActualizarCarne">
-                                  <Properties>
-                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="6" rowCount="1">
-                                        <Column editable="true" title="ID_CARNE" type="java.lang.String"/>
-                                        <Column editable="true" title="NOMBRE" type="java.lang.String"/>
-                                        <Column editable="true" title="PRESENTACION" type="java.lang.String"/>
-                                        <Column editable="true" title="CANTIDAD DE GRASAS" type="java.lang.Float"/>
-                                        <Column editable="true" title="PRECIO" type="java.lang.Float"/>
-                                        <Column editable="true" title="ANIMAL" type="java.lang.String"/>
-                                      </Table>
-                                    </Property>
-                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                                      <TableColumnModel selectionModel="0">
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                      </TableColumnModel>
-                                    </Property>
-                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                                    </Property>
-                                  </Properties>
-                                </Component>
-                              </SubComponents>
-                            </Container>
-                            <Component class="javax.swing.JButton" name="jButtonActualizarCarne">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonActualizarCarneActionPerformed"/>
-                              </Events>
-                            </Component>
-                          </SubComponents>
-                        </Container>
                         <Container class="javax.swing.JPanel" name="jPanelCrearCarne">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -303,6 +190,8 @@
                                           <Component id="jScrollPane13" pref="699" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="jButtonCrearCarne" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jButtonActualizarCarne" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -315,7 +204,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane13" min="-2" pref="52" max="-2" attributes="0"/>
                                       <EmptySpace pref="21" max="32767" attributes="0"/>
-                                      <Component id="jButtonCrearCarne" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButtonCrearCarne" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonActualizarCarne" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -331,17 +223,41 @@
                                 <Component class="javax.swing.JTable" name="jTableCrearCarne">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="6" rowCount="1">
+                                      <Table columnCount="10" rowCount="1">
                                         <Column editable="true" title="ID_CARNE" type="java.lang.String"/>
-                                        <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
                                         <Column editable="true" title="PRESENTACION" type="java.lang.String"/>
                                         <Column editable="true" title="CANTIDAD DE GRASAS" type="java.lang.Float"/>
                                         <Column editable="true" title="PRECIO" type="java.lang.Float"/>
                                         <Column editable="true" title="ANIMAL" type="java.lang.String"/>
+                                        <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
+                                        <Column editable="true" title="PRECIO/PORCION" type="java.lang.Object"/>
+                                        <Column editable="true" title="CANTIDAD" type="java.lang.Object"/>
+                                        <Column editable="true" title="TIPO" type="java.lang.Object"/>
+                                        <Column editable="true" title="FOTO" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                           <Title/>
                                           <Editor/>
@@ -387,6 +303,14 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCrearCarneActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButtonActualizarCarne">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonActualizarCarneActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -498,7 +422,7 @@
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                <TitledBorder title="CREAR"/>
+                                <TitledBorder title="CREAR Y ACTUALIZAR"/>
                               </Border>
                             </Property>
                           </Properties>
@@ -881,8 +805,8 @@
                 <Container class="javax.swing.JPanel" name="jPanel1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="INGREDIENTE ADICIONAL">
-                        <Property name="tabTitle" type="java.lang.String" value="INGREDIENTE ADICIONAL"/>
+                      <JTabbedPaneConstraints tabName="BORRAR">
+                        <Property name="tabTitle" type="java.lang.String" value="BORRAR"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -919,272 +843,15 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jPanelActualizarIngredienteAdicional" alignment="1" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jComboBoxIngredienteAdicionalCrud" min="-2" pref="228" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jButtonEliminarIngredienteAdicional" min="-2" pref="236" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="241" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="jPanelCrearIngredienteAdicional" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="0" pref="745" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jComboBoxIngredienteAdicionalCrud" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButtonEliminarIngredienteAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="jPanelActualizarIngredienteAdicional" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jPanelCrearIngredienteAdicional" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <EmptySpace pref="165" max="32767" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="0" pref="512" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
-                      <SubComponents>
-                        <Component class="javax.swing.JComboBox" name="jComboBoxIngredienteAdicionalCrud">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButtonEliminarIngredienteAdicional">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="ELIMININAR INGREDIENTE"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEliminarIngredienteAdicionalActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Container class="javax.swing.JPanel" name="jPanelActualizarIngredienteAdicional">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                <TitledBorder>
-                                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                    <TitledBorder title="ACTUALIZAR"/>
-                                  </Border>
-                                </TitledBorder>
-                              </Border>
-                            </Property>
-                          </Properties>
-
-                          <Layout>
-                            <DimensionLayout dim="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane11" pref="699" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButtonActualizarIngredienteAdicional" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                            <DimensionLayout dim="1">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jScrollPane11" min="-2" pref="57" max="-2" attributes="0"/>
-                                      <EmptySpace pref="9" max="32767" attributes="0"/>
-                                      <Component id="jButtonActualizarIngredienteAdicional" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                          </Layout>
-                          <SubComponents>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane11">
-                              <AuxValues>
-                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                              </AuxValues>
-
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTableActualizarSIngredienteAdicional">
-                                  <Properties>
-                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="6" rowCount="1">
-                                        <Column editable="true" title="ID_INGREDIENTE" type="java.lang.String"/>
-                                        <Column editable="true" title="NOMBRE" type="java.lang.String"/>
-                                        <Column editable="true" title="PRECIO POR PORCION" type="java.lang.Integer"/>
-                                        <Column editable="true" title="CANTIDAD" type="java.lang.String"/>
-                                        <Column editable="true" title="TIPO" type="java.lang.String"/>
-                                        <Column editable="true" title="FOTO" type="java.lang.Object"/>
-                                      </Table>
-                                    </Property>
-                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                                      <TableColumnModel selectionModel="0">
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title value="FOTO"/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                      </TableColumnModel>
-                                    </Property>
-                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                                    </Property>
-                                  </Properties>
-                                </Component>
-                              </SubComponents>
-                            </Container>
-                            <Component class="javax.swing.JButton" name="jButtonActualizarIngredienteAdicional">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
-                              </Properties>
-                            </Component>
-                          </SubComponents>
-                        </Container>
-                        <Container class="javax.swing.JPanel" name="jPanelCrearIngredienteAdicional">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                <TitledBorder title="CREAR"/>
-                              </Border>
-                            </Property>
-                          </Properties>
-
-                          <Layout>
-                            <DimensionLayout dim="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane12" pref="699" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButtonCrearIngredienteAdicional" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                            <DimensionLayout dim="1">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jScrollPane12" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButtonCrearIngredienteAdicional" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                            </DimensionLayout>
-                          </Layout>
-                          <SubComponents>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane12">
-                              <AuxValues>
-                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                              </AuxValues>
-
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Component class="javax.swing.JTable" name="jTableCrearIngredienteAdicional">
-                                  <Properties>
-                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="6" rowCount="1">
-                                        <Column editable="true" title="ID_INGREDIENTE" type="java.lang.String"/>
-                                        <Column editable="true" title="NOMBRE" type="java.lang.String"/>
-                                        <Column editable="true" title="PRECIO POR PORCION" type="java.lang.String"/>
-                                        <Column editable="true" title="CANTIDAD" type="java.lang.String"/>
-                                        <Column editable="true" title="TIPO" type="java.lang.Integer"/>
-                                        <Column editable="true" title="FOTO" type="java.lang.Object"/>
-                                      </Table>
-                                    </Property>
-                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                                      <TableColumnModel selectionModel="0">
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                      </TableColumnModel>
-                                    </Property>
-                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                                    </Property>
-                                  </Properties>
-                                </Component>
-                              </SubComponents>
-                            </Container>
-                            <Component class="javax.swing.JButton" name="jButtonCrearIngredienteAdicional">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="CREAR"/>
-                              </Properties>
-                            </Component>
-                          </SubComponents>
-                        </Container>
-                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -1425,7 +1092,7 @@
                                   </Group>
                                   <Component id="jPanelIngredientesAdicionales" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="23" max="32767" attributes="0"/>
+                              <EmptySpace pref="25" max="32767" attributes="0"/>
                               <Component id="jPanelEtemsEscogidos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1500,13 +1167,11 @@
                               <Component id="jComboBoxSalsas" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboBoxVerduras" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboBoxCarne" alignment="0" pref="178" max="32767" attributes="0"/>
-                              <Component id="jComboBoxIgredienteAdicional" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jButtonEscogerVerdura" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jButtonEscogerVerdura" alignment="0" pref="167" max="32767" attributes="0"/>
                               <Component id="jButtonEscogerCarne" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButtonEscogerIngrediente" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButtonEscogerSalsa" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1515,12 +1180,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxIgredienteAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButtonEscogerIngrediente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <EmptySpace pref="45" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jComboBoxCarne" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonEscogerCarne" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1589,32 +1249,6 @@
                       </StringArray>
                     </Property>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBoxIgredienteAdicional">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="12" style="0"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="INGREDIENTE ADICIONAL 1"/>
-                        <StringItem index="1" value="INGREDIENTE ADICIONAL 1"/>
-                        <StringItem index="2" value="INGREDIENTE ADICIONAL 1"/>
-                        <StringItem index="3" value="INGREDIENTE ADICIONAL 1"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButtonEscogerIngrediente">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="ESCOGER INGREDIENTE"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEscogerIngredienteActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonEscogerCarne">
                   <Properties>
@@ -1768,9 +1402,9 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="10">
-                        <Column editable="false" title="INGREDIENTES " type="java.lang.Object"/>
+                        <Column editable="false" title="FECHA" type="java.lang.Object"/>
+                        <Column editable="false" title="INFO" type="java.lang.Object"/>
                         <Column editable="false" title="COSTO" type="java.lang.Object"/>
-                        <Column editable="false" title="PRECIO TOTAL" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

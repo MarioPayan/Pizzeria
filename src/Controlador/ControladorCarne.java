@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import ControladorJPA.CarneJpaController;
-import ControladorJPA.Conexion;
+import persistencia.CarneJpaController;
+import persistencia.Conexion;
 import Logica.Carne;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;

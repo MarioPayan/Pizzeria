@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorJPA;
+package persistencia;
 
 import ControladorJPA.exceptions.NonexistentEntityException;
 import ControladorJPA.exceptions.PreexistingEntityException;

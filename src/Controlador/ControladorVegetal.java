@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import ControladorJPA.Conexion;
-import ControladorJPA.VegetalJpaController;
+import persistencia.Conexion;
+import persistencia.VegetalJpaController;
 import Logica.Vegetal;
 import java.util.List;
 import javax.swing.JComboBox;

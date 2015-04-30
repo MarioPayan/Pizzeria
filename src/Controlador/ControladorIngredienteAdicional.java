@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import ControladorJPA.IngredienteadicionalJpaController;
-import ControladorJPA.Conexion;
+import persistencia.IngredienteadicionalJpaController;
+import persistencia.Conexion;
 import Logica.Carne;
 import Logica.Ingredienteadicional;
 import java.util.List;

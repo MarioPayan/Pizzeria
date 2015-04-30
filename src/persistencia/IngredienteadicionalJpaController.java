@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorJPA;
+package persistencia;
 
 import ControladorJPA.exceptions.NonexistentEntityException;
 import ControladorJPA.exceptions.PreexistingEntityException;
-import Logica.Vegetal;
+import Logica.Carne;
+import Logica.Ingredienteadicional;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +22,9 @@ import javax.persistence.criteria.Root;
  *
  * @author kazemu
  */
-public class VegetalJpaController implements Serializable {
+public class IngredienteadicionalJpaController implements Serializable {
 
-    public VegetalJpaController(EntityManagerFactory emf) {
+    public IngredienteadicionalJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +33,16 @@ public class VegetalJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Vegetal vegetal) throws PreexistingEntityException, Exception {
+    public void create(Ingredienteadicional ingredienteadicional) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(vegetal);
+            em.persist(ingredienteadicional);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findVegetal(vegetal.getVegetalId()) != null) {
-                throw new PreexistingEntityException("Vegetal " + vegetal + " already exists.", ex);
+            if (findIngredienteadicional(ingredienteadicional.getIngredienteId()) != null) {
+                throw new PreexistingEntityException("Ingredienteadicional " + ingredienteadicional + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +52,19 @@ public class VegetalJpaController implements Serializable {
         }
     }
 
-    public void edit(Vegetal vegetal) throws NonexistentEntityException, Exception {
+    public void edit(Ingredienteadicional ingredienteadicional) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            vegetal = em.merge(vegetal);
+            ingredienteadicional = em.merge(ingredienteadicional);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = vegetal.getVegetalId();
-                if (findVegetal(id) == null) {
-                    throw new NonexistentEntityException("The vegetal with id " + id + " no longer exists.");
+                String id = ingredienteadicional.getIngredienteId();
+                if (findIngredienteadicional(id) == null) {
+                    throw new NonexistentEntityException("The ingredienteadicional with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +80,14 @@ public class VegetalJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Vegetal vegetal;
+            Ingredienteadicional ingredienteadicional;
             try {
-                vegetal = em.getReference(Vegetal.class, id);
-                vegetal.getVegetalId();
+                ingredienteadicional = em.getReference(Ingredienteadicional.class, id);
+                ingredienteadicional.getIngredienteId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The vegetal with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The ingredienteadicional with id " + id + " no longer exists.", enfe);
             }
-            em.remove(vegetal);
+            em.remove(ingredienteadicional);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +96,19 @@ public class VegetalJpaController implements Serializable {
         }
     }
 
-    public List<Vegetal> findVegetalEntities() {
-        return findVegetalEntities(true, -1, -1);
+    public List<Ingredienteadicional> findIngredienteadicionalEntities() {
+        return findIngredienteadicionalEntities(true, -1, -1);
     }
 
-    public List<Vegetal> findVegetalEntities(int maxResults, int firstResult) {
-        return findVegetalEntities(false, maxResults, firstResult);
+    public List<Ingredienteadicional> findIngredienteadicionalEntities(int maxResults, int firstResult) {
+        return findIngredienteadicionalEntities(false, maxResults, firstResult);
     }
 
-    private List<Vegetal> findVegetalEntities(boolean all, int maxResults, int firstResult) {
+    private List<Ingredienteadicional> findIngredienteadicionalEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Vegetal.class));
+            cq.select(cq.from(Ingredienteadicional.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +120,20 @@ public class VegetalJpaController implements Serializable {
         }
     }
 
-    public Vegetal findVegetal(String id) {
+    public Ingredienteadicional findIngredienteadicional(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Vegetal.class, id);
+            return em.find(Ingredienteadicional.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getVegetalCount() {
+    public int getIngredienteadicionalCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Vegetal> rt = cq.from(Vegetal.class);
+            Root<Ingredienteadicional> rt = cq.from(Ingredienteadicional.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -140,5 +141,7 @@ public class VegetalJpaController implements Serializable {
             em.close();
         }
     }
+
+    
     
 }

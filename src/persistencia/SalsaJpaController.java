@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorJPA;
+package persistencia;
 
 import ControladorJPA.exceptions.NonexistentEntityException;
 import ControladorJPA.exceptions.PreexistingEntityException;
-import Logica.Carne;
-import Logica.Ingredienteadicional;
+import Logica.Salsa;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -22,9 +21,9 @@ import javax.persistence.criteria.Root;
  *
  * @author kazemu
  */
-public class IngredienteadicionalJpaController implements Serializable {
+public class SalsaJpaController implements Serializable {
 
-    public IngredienteadicionalJpaController(EntityManagerFactory emf) {
+    public SalsaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -33,16 +32,16 @@ public class IngredienteadicionalJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Ingredienteadicional ingredienteadicional) throws PreexistingEntityException, Exception {
+    public void create(Salsa salsa) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(ingredienteadicional);
+            em.persist(salsa);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findIngredienteadicional(ingredienteadicional.getIngredienteId()) != null) {
-                throw new PreexistingEntityException("Ingredienteadicional " + ingredienteadicional + " already exists.", ex);
+            if (findSalsa(salsa.getSalsaId()) != null) {
+                throw new PreexistingEntityException("Salsa " + salsa + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -52,19 +51,19 @@ public class IngredienteadicionalJpaController implements Serializable {
         }
     }
 
-    public void edit(Ingredienteadicional ingredienteadicional) throws NonexistentEntityException, Exception {
+    public void edit(Salsa salsa) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ingredienteadicional = em.merge(ingredienteadicional);
+            salsa = em.merge(salsa);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = ingredienteadicional.getIngredienteId();
-                if (findIngredienteadicional(id) == null) {
-                    throw new NonexistentEntityException("The ingredienteadicional with id " + id + " no longer exists.");
+                String id = salsa.getSalsaId();
+                if (findSalsa(id) == null) {
+                    throw new NonexistentEntityException("The salsa with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -80,14 +79,14 @@ public class IngredienteadicionalJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Ingredienteadicional ingredienteadicional;
+            Salsa salsa;
             try {
-                ingredienteadicional = em.getReference(Ingredienteadicional.class, id);
-                ingredienteadicional.getIngredienteId();
+                salsa = em.getReference(Salsa.class, id);
+                salsa.getSalsaId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The ingredienteadicional with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The salsa with id " + id + " no longer exists.", enfe);
             }
-            em.remove(ingredienteadicional);
+            em.remove(salsa);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -96,19 +95,19 @@ public class IngredienteadicionalJpaController implements Serializable {
         }
     }
 
-    public List<Ingredienteadicional> findIngredienteadicionalEntities() {
-        return findIngredienteadicionalEntities(true, -1, -1);
+    public List<Salsa> findSalsaEntities() {
+        return findSalsaEntities(true, -1, -1);
     }
 
-    public List<Ingredienteadicional> findIngredienteadicionalEntities(int maxResults, int firstResult) {
-        return findIngredienteadicionalEntities(false, maxResults, firstResult);
+    public List<Salsa> findSalsaEntities(int maxResults, int firstResult) {
+        return findSalsaEntities(false, maxResults, firstResult);
     }
 
-    private List<Ingredienteadicional> findIngredienteadicionalEntities(boolean all, int maxResults, int firstResult) {
+    private List<Salsa> findSalsaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Ingredienteadicional.class));
+            cq.select(cq.from(Salsa.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -120,20 +119,20 @@ public class IngredienteadicionalJpaController implements Serializable {
         }
     }
 
-    public Ingredienteadicional findIngredienteadicional(String id) {
+    public Salsa findSalsa(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Ingredienteadicional.class, id);
+            return em.find(Salsa.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getIngredienteadicionalCount() {
+    public int getSalsaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Ingredienteadicional> rt = cq.from(Ingredienteadicional.class);
+            Root<Salsa> rt = cq.from(Salsa.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -141,7 +140,5 @@ public class IngredienteadicionalJpaController implements Serializable {
             em.close();
         }
     }
-
-    
     
 }

@@ -9,7 +9,7 @@ import Controlador.ControladorIngredienteAdicional;
 import Controlador.ControladorPizzaBase;
 import Controlador.ControladorSalsa;
 import Controlador.ControladorVegetal;
-import ControladorJPA.CarneJpaController;
+import persistencia.CarneJpaController;
 import Logica.Carne;
 import java.awt.Container;
 import java.util.List;
@@ -51,7 +51,8 @@ public final class Interfaz extends javax.swing.JFrame {
         this.StringListaVerduras = controlVerdura.nombreVegetal();
         this.StringListaSalsas = controlSalsa.nombreSalsa();
         this.StringListaAdicional = controlAdicional.nombreIngredientes();
-        this.StringListaElementosEscogidos = new String[] { "" }; 
+        this.StringListaElementosEscogidos = new String[4];
+        for(int i=0;i<4;i++){StringListaElementosEscogidos[i]="";}
         
     /*this.StringListaCarne  = new String[] { "CARNE DE RES", "carne de pollo", "CARNE DE PATO", "CARNE DE CERDO ", "CARNE DE BUFALO ", " " };
     this.StringListaPizzaBase  = new String[] { "PIZZA BASE 1", "pizza base 2", "PIZZA BASE 3", "PIZZA BASE 4" };
@@ -71,7 +72,6 @@ public final class Interfaz extends javax.swing.JFrame {
         jComboBoxCarne.setModel(new javax.swing.DefaultComboBoxModel(StringListaCarne));
         jComboBoxVerduras.setModel(new javax.swing.DefaultComboBoxModel(StringListaVerduras));
         jComboBoxSalsas.setModel(new javax.swing.DefaultComboBoxModel(StringListaSalsas));
-        jComboBoxIgredienteAdicional.setModel(new javax.swing.DefaultComboBoxModel(StringListaAdicional));
         jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = StringListaElementosEscogidos;
             public int getSize() { return strings.length; }
@@ -82,7 +82,6 @@ public final class Interfaz extends javax.swing.JFrame {
         jComboBoxCarneCrud.setModel(new javax.swing.DefaultComboBoxModel(StringListaCarne));
         jComboBoxVegetalesCrud.setModel(new javax.swing.DefaultComboBoxModel(StringListaVerduras));
         jComboBoxSalsaCrud.setModel(new javax.swing.DefaultComboBoxModel(StringListaSalsas));
-        jComboBoxIngredienteAdicionalCrud.setModel(new javax.swing.DefaultComboBoxModel(StringListaAdicional));
 
     }
     
@@ -102,14 +101,11 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelCarne = new javax.swing.JPanel();
         jComboBoxCarneCrud = new javax.swing.JComboBox();
         jButtonEliminarCarne = new javax.swing.JButton();
-        jPanelActualizarCarne = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTableActualizarCarne = new javax.swing.JTable();
-        jButtonActualizarCarne = new javax.swing.JButton();
         jPanelCrearCarne = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTableCrearCarne = new javax.swing.JTable();
         jButtonCrearCarne = new javax.swing.JButton();
+        jButtonActualizarCarne = new javax.swing.JButton();
         jPanelCrudVejetales = new javax.swing.JPanel();
         jPanelVegetales = new javax.swing.JPanel();
         jComboBoxVegetalesCrud = new javax.swing.JComboBox();
@@ -130,16 +126,6 @@ public final class Interfaz extends javax.swing.JFrame {
         jButtonActualizarSalsa = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelCrudIngredienteAdicional = new javax.swing.JPanel();
-        jComboBoxIngredienteAdicionalCrud = new javax.swing.JComboBox();
-        jButtonEliminarIngredienteAdicional = new javax.swing.JButton();
-        jPanelActualizarIngredienteAdicional = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTableActualizarSIngredienteAdicional = new javax.swing.JTable();
-        jButtonActualizarIngredienteAdicional = new javax.swing.JButton();
-        jPanelCrearIngredienteAdicional = new javax.swing.JPanel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTableCrearIngredienteAdicional = new javax.swing.JTable();
-        jButtonCrearIngredienteAdicional = new javax.swing.JButton();
         jPanelCrudPizzaBase = new javax.swing.JPanel();
         jComboBoxPizzaBaseCrud = new javax.swing.JComboBox();
         jButtonEliminarPizzaBase = new javax.swing.JButton();
@@ -154,8 +140,6 @@ public final class Interfaz extends javax.swing.JFrame {
         jComboBoxCarne = new javax.swing.JComboBox();
         jComboBoxVerduras = new javax.swing.JComboBox();
         jComboBoxSalsas = new javax.swing.JComboBox();
-        jComboBoxIgredienteAdicional = new javax.swing.JComboBox();
-        jButtonEscogerIngrediente = new javax.swing.JButton();
         jButtonEscogerCarne = new javax.swing.JButton();
         jButtonEscogerVerdura = new javax.swing.JButton();
         jButtonEscogerSalsa = new javax.swing.JButton();
@@ -186,66 +170,18 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jPanelActualizarCarne.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("ACTUALIZAR")));
-
-        jTableActualizarCarne.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID_CARNE", "NOMBRE", "PRESENTACION", "CANTIDAD DE GRASAS", "PRECIO", "ANIMAL"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane9.setViewportView(jTableActualizarCarne);
-
-        jButtonActualizarCarne.setText("ACTUALIZAR");
-        jButtonActualizarCarne.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonActualizarCarneActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelActualizarCarneLayout = new javax.swing.GroupLayout(jPanelActualizarCarne);
-        jPanelActualizarCarne.setLayout(jPanelActualizarCarneLayout);
-        jPanelActualizarCarneLayout.setHorizontalGroup(
-            jPanelActualizarCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActualizarCarneLayout.createSequentialGroup()
-                .addGroup(jPanelActualizarCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                    .addGroup(jPanelActualizarCarneLayout.createSequentialGroup()
-                        .addComponent(jButtonActualizarCarne)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanelActualizarCarneLayout.setVerticalGroup(
-            jPanelActualizarCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActualizarCarneLayout.createSequentialGroup()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButtonActualizarCarne)
-                .addContainerGap())
-        );
-
         jPanelCrearCarne.setBorder(javax.swing.BorderFactory.createTitledBorder("CREAR"));
 
         jTableCrearCarne.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_CARNE", "NOMBRE", "PRESENTACION", "CANTIDAD DE GRASAS", "PRECIO", "ANIMAL"
+                "ID_CARNE", "PRESENTACION", "CANTIDAD DE GRASAS", "PRECIO", "ANIMAL", "NOMBRE", "PRECIO/PORCION", "CANTIDAD", "TIPO", "FOTO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -261,6 +197,13 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jButtonActualizarCarne.setText("ACTUALIZAR");
+        jButtonActualizarCarne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarCarneActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCrearCarneLayout = new javax.swing.GroupLayout(jPanelCrearCarne);
         jPanelCrearCarne.setLayout(jPanelCrearCarneLayout);
         jPanelCrearCarneLayout.setHorizontalGroup(
@@ -270,6 +213,8 @@ public final class Interfaz extends javax.swing.JFrame {
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
                     .addGroup(jPanelCrearCarneLayout.createSequentialGroup()
                         .addComponent(jButtonCrearCarne, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonActualizarCarne)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -278,7 +223,9 @@ public final class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanelCrearCarneLayout.createSequentialGroup()
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jButtonCrearCarne))
+                .addGroup(jPanelCrearCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCrearCarne)
+                    .addComponent(jButtonActualizarCarne)))
         );
 
         javax.swing.GroupLayout jPanelCarneLayout = new javax.swing.GroupLayout(jPanelCarne);
@@ -288,7 +235,6 @@ public final class Interfaz extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCarneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelActualizarCarne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCarneLayout.createSequentialGroup()
                         .addComponent(jComboBoxCarneCrud, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -304,11 +250,9 @@ public final class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanelCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCarneCrud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEliminarCarne))
-                .addGap(39, 39, 39)
-                .addComponent(jPanelActualizarCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelCrearCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelCrudCarneLayout = new javax.swing.GroupLayout(jPanelCrudCarne);
@@ -340,7 +284,7 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jPanelCrearVegetales.setBorder(javax.swing.BorderFactory.createTitledBorder("CREAR"));
+        jPanelCrearVegetales.setBorder(javax.swing.BorderFactory.createTitledBorder("CREAR Y ACTUALIZAR"));
 
         jTableCrearVegetales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -576,133 +520,15 @@ public final class Interfaz extends javax.swing.JFrame {
 
         jPanelCrudIngredienteAdicional.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jComboBoxIngredienteAdicionalCrud.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButtonEliminarIngredienteAdicional.setText("ELIMININAR INGREDIENTE");
-        jButtonEliminarIngredienteAdicional.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEliminarIngredienteAdicionalActionPerformed(evt);
-            }
-        });
-
-        jPanelActualizarIngredienteAdicional.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("ACTUALIZAR")));
-
-        jTableActualizarSIngredienteAdicional.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID_INGREDIENTE", "NOMBRE", "PRECIO POR PORCION", "CANTIDAD", "TIPO", "FOTO"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane11.setViewportView(jTableActualizarSIngredienteAdicional);
-        if (jTableActualizarSIngredienteAdicional.getColumnModel().getColumnCount() > 0) {
-            jTableActualizarSIngredienteAdicional.getColumnModel().getColumn(5).setHeaderValue("FOTO");
-        }
-
-        jButtonActualizarIngredienteAdicional.setText("ACTUALIZAR");
-
-        javax.swing.GroupLayout jPanelActualizarIngredienteAdicionalLayout = new javax.swing.GroupLayout(jPanelActualizarIngredienteAdicional);
-        jPanelActualizarIngredienteAdicional.setLayout(jPanelActualizarIngredienteAdicionalLayout);
-        jPanelActualizarIngredienteAdicionalLayout.setHorizontalGroup(
-            jPanelActualizarIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActualizarIngredienteAdicionalLayout.createSequentialGroup()
-                .addGroup(jPanelActualizarIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                    .addGroup(jPanelActualizarIngredienteAdicionalLayout.createSequentialGroup()
-                        .addComponent(jButtonActualizarIngredienteAdicional)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanelActualizarIngredienteAdicionalLayout.setVerticalGroup(
-            jPanelActualizarIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActualizarIngredienteAdicionalLayout.createSequentialGroup()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButtonActualizarIngredienteAdicional)
-                .addContainerGap())
-        );
-
-        jPanelCrearIngredienteAdicional.setBorder(javax.swing.BorderFactory.createTitledBorder("CREAR"));
-
-        jTableCrearIngredienteAdicional.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID_INGREDIENTE", "NOMBRE", "PRECIO POR PORCION", "CANTIDAD", "TIPO", "FOTO"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane12.setViewportView(jTableCrearIngredienteAdicional);
-
-        jButtonCrearIngredienteAdicional.setText("CREAR");
-
-        javax.swing.GroupLayout jPanelCrearIngredienteAdicionalLayout = new javax.swing.GroupLayout(jPanelCrearIngredienteAdicional);
-        jPanelCrearIngredienteAdicional.setLayout(jPanelCrearIngredienteAdicionalLayout);
-        jPanelCrearIngredienteAdicionalLayout.setHorizontalGroup(
-            jPanelCrearIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCrearIngredienteAdicionalLayout.createSequentialGroup()
-                .addGroup(jPanelCrearIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                    .addGroup(jPanelCrearIngredienteAdicionalLayout.createSequentialGroup()
-                        .addComponent(jButtonCrearIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanelCrearIngredienteAdicionalLayout.setVerticalGroup(
-            jPanelCrearIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrearIngredienteAdicionalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCrearIngredienteAdicional)
-                .addGap(31, 31, 31))
-        );
-
         javax.swing.GroupLayout jPanelCrudIngredienteAdicionalLayout = new javax.swing.GroupLayout(jPanelCrudIngredienteAdicional);
         jPanelCrudIngredienteAdicional.setLayout(jPanelCrudIngredienteAdicionalLayout);
         jPanelCrudIngredienteAdicionalLayout.setHorizontalGroup(
             jPanelCrudIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrudIngredienteAdicionalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelCrudIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelActualizarIngredienteAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCrudIngredienteAdicionalLayout.createSequentialGroup()
-                        .addComponent(jComboBoxIngredienteAdicionalCrud, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonEliminarIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 241, Short.MAX_VALUE))
-                    .addComponent(jPanelCrearIngredienteAdicional, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 745, Short.MAX_VALUE)
         );
         jPanelCrudIngredienteAdicionalLayout.setVerticalGroup(
             jPanelCrudIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrudIngredienteAdicionalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelCrudIngredienteAdicionalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxIngredienteAdicionalCrud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarIngredienteAdicional))
-                .addGap(33, 33, 33)
-                .addComponent(jPanelActualizarIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelCrearIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGap(0, 512, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -721,7 +547,7 @@ public final class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jTabbedPaneCrudPizza.addTab("INGREDIENTE ADICIONAL", jPanel1);
+        jTabbedPaneCrudPizza.addTab("BORRAR", jPanel1);
 
         jPanelCrudPizzaBase.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -860,17 +686,6 @@ public final class Interfaz extends javax.swing.JFrame {
         jComboBoxSalsas.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         jComboBoxSalsas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SALSA DE TOMATE ", "SALSA MAYONESA", "SALSA ROSADA", "ALIOLI ", " " }));
 
-        jComboBoxIgredienteAdicional.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
-        jComboBoxIgredienteAdicional.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "INGREDIENTE ADICIONAL 1", "INGREDIENTE ADICIONAL 1", "INGREDIENTE ADICIONAL 1", "INGREDIENTE ADICIONAL 1" }));
-
-        jButtonEscogerIngrediente.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
-        jButtonEscogerIngrediente.setText("ESCOGER INGREDIENTE");
-        jButtonEscogerIngrediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEscogerIngredienteActionPerformed(evt);
-            }
-        });
-
         jButtonEscogerCarne.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         jButtonEscogerCarne.setText("ESCOGER CARNE ");
         jButtonEscogerCarne.addActionListener(new java.awt.event.ActionListener() {
@@ -903,23 +718,17 @@ public final class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanelIngredientesAdicionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jComboBoxSalsas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxVerduras, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBoxCarne, javax.swing.GroupLayout.Alignment.LEADING, 0, 178, Short.MAX_VALUE)
-                    .addComponent(jComboBoxIgredienteAdicional, 0, 1, Short.MAX_VALUE))
+                    .addComponent(jComboBoxCarne, javax.swing.GroupLayout.Alignment.LEADING, 0, 178, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelIngredientesAdicionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButtonEscogerVerdura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEscogerVerdura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                     .addComponent(jButtonEscogerCarne, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonEscogerIngrediente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEscogerSalsa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanelIngredientesAdicionalesLayout.setVerticalGroup(
             jPanelIngredientesAdicionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelIngredientesAdicionalesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelIngredientesAdicionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxIgredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEscogerIngrediente))
-                .addGap(8, 8, 8)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(jPanelIngredientesAdicionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEscogerCarne))
@@ -1005,7 +814,7 @@ public final class Interfaz extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "INGREDIENTES ", "COSTO", "PRECIO TOTAL"
+                "FECHA", "INFO", "COSTO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -1050,7 +859,7 @@ public final class Interfaz extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonAnadirPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanelIngredientesAdicionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jPanelEtemsEscogidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -1097,26 +906,10 @@ public final class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonEscogerIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscogerIngredienteActionPerformed
-        String ingrediente = jComboBoxIgredienteAdicional.getSelectedItem().toString();
-        String [] temp = new String [StringListaElementosEscogidos.length + 1]; 
-
-        int i; 
-        for( i = 0 ; i < StringListaElementosEscogidos.length ; i++ ){ 
-            temp[i] = StringListaElementosEscogidos[i]; 
-        } 
-        temp[StringListaElementosEscogidos.length] = ingrediente;
-        StringListaElementosEscogidos  = temp;
-        jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = StringListaElementosEscogidos;
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-    }//GEN-LAST:event_jButtonEscogerIngredienteActionPerformed
-
     private void jButtonComprarGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComprarGenerarFacturaActionPerformed
         // TODO add your handling code here:
         System.out.println ("generar factura  ");
+        
         
         Container contenedor = new Container();
          
@@ -1126,14 +919,8 @@ public final class Interfaz extends javax.swing.JFrame {
     private void jButtonEscogerCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscogerCarneActionPerformed
         // TODO add your handling code here:
         String ingrediente = jComboBoxCarne.getSelectedItem().toString();
-        String [] temp = new String [StringListaElementosEscogidos.length + 1]; 
 
-        int i; 
-        for( i = 0 ; i < StringListaElementosEscogidos.length ; i++ ){ 
-            temp[i] = StringListaElementosEscogidos[i]; 
-        } 
-        temp[StringListaElementosEscogidos.length] = ingrediente;
-        StringListaElementosEscogidos  = temp;
+        StringListaElementosEscogidos[1] = ingrediente;
         jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = StringListaElementosEscogidos;
             public int getSize() { return strings.length; }
@@ -1144,14 +931,8 @@ public final class Interfaz extends javax.swing.JFrame {
     private void jButtonEscogerVerduraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscogerVerduraActionPerformed
         // TODO add your handling code here:
         String ingrediente = jComboBoxVerduras.getSelectedItem().toString();
-        String [] temp = new String [StringListaElementosEscogidos.length + 1]; 
-
-        int i; 
-        for( i = 0 ; i < StringListaElementosEscogidos.length ; i++ ){ 
-            temp[i] = StringListaElementosEscogidos[i]; 
-        } 
-        temp[StringListaElementosEscogidos.length] = ingrediente;
-        StringListaElementosEscogidos  = temp;
+        
+        StringListaElementosEscogidos[2]  = ingrediente;
         jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = StringListaElementosEscogidos;
             public int getSize() { return strings.length; }
@@ -1163,14 +944,8 @@ public final class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
  
         String ingrediente = jComboBoxSalsas.getSelectedItem().toString();
-        String [] temp = new String [StringListaElementosEscogidos.length + 1]; 
 
-        int i; 
-        for( i = 0 ; i < StringListaElementosEscogidos.length ; i++ ){ 
-            temp[i] = StringListaElementosEscogidos[i]; 
-        } 
-        temp[StringListaElementosEscogidos.length] = ingrediente;
-        StringListaElementosEscogidos  = temp;
+        StringListaElementosEscogidos[3]  = ingrediente;
         jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = StringListaElementosEscogidos;
             public int getSize() { return strings.length; }
@@ -1181,14 +956,7 @@ public final class Interfaz extends javax.swing.JFrame {
     private void jButtonAnadirPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnadirPizzaActionPerformed
         // TODO add your handling code here:
         String ingrediente = jComboBoxPizza.getSelectedItem().toString();
-        String [] temp = new String [StringListaElementosEscogidos.length + 1]; 
-
-        int i; 
-        for( i = 0 ; i < StringListaElementosEscogidos.length ; i++ ){ 
-            temp[i] = StringListaElementosEscogidos[i]; 
-        } 
-        temp[StringListaElementosEscogidos.length] = ingrediente;
-        StringListaElementosEscogidos  = temp;
+        StringListaElementosEscogidos[0]  = ingrediente;
         jListItemsEscgidos.setModel(new javax.swing.AbstractListModel() {
             String[] strings = StringListaElementosEscogidos;
             public int getSize() { return strings.length; }
@@ -1196,124 +964,9 @@ public final class Interfaz extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButtonAnadirPizzaActionPerformed
 
-    private void jButtonEliminarPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPizzaBaseActionPerformed
-        // TODO add your handling code here:
-         try {
-            controlPizzaBase.eliminarPizza(jComboBoxPizzaBaseCrud);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
- 
-    }//GEN-LAST:event_jButtonEliminarPizzaBaseActionPerformed
-
-    private void jButtonEliminarVegetalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarVegetalesActionPerformed
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            controlVerdura.eliminarVegetal(jComboBoxVegetalesCrud);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonEliminarVegetalesActionPerformed
-
     private void jComboBoxPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPizzaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPizzaActionPerformed
-
-    private void jButtonEliminarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCarneActionPerformed
-        try {
-            // TODO add your handling code here:
-            controlCarne.eliminarCarne(jComboBoxCarneCrud);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonEliminarCarneActionPerformed
-
-    private void jButtonActualizarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarCarneActionPerformed
-        // TODO add your handling code here:
-        Carne carne = controlCarne.getCarneCombo (jComboBoxCarneCrud);
-        
-        jTableActualizarCarne.setValueAt(carne.getCarneId(), 0, 0);
-        jTableActualizarCarne.setValueAt(carne.getNombre(), 0, 1);
-        jTableActualizarCarne.setValueAt(carne.getPresentacion(), 0, 2);
-        jTableActualizarCarne.setValueAt(carne.getCantidadgrasas(), 0, 3);
-        jTableActualizarCarne.setValueAt(carne.getPrecioporcion(), 0, 4);
-        jTableActualizarCarne.setValueAt(carne.getAnimal(), 0, 5);
-        try {
-            controlCarne.actualizarCarne( jTableActualizarCarne.getValueAt(0, 0).toString(), // idCarne
-                                           "", // String ingredienteId
-                                           jTableActualizarCarne.getValueAt(0, 1).toString(),  
-                                           Float.parseFloat(jTableActualizarCarne.getValueAt(0, 4).toString()), //float precioporcion, 
-                                           0, //int cantidad, 
-                                           "", //String tipo, 
-                                           null, //byte[] foto, 
-                                           jTableActualizarCarne.getValueAt(0, 2).toString(), //String presentacion, 
-                                           Float.parseFloat(jTableActualizarCarne.getValueAt(0, 3).toString()),//float cantidadgrasas, 
-                                           jTableActualizarCarne.getValueAt(0, 5).toString());
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonActualizarCarneActionPerformed
-
-    private void jButtonCrearCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearCarneActionPerformed
-        // TODO add your handling code here:
-        
-        try {
-            controlCarne.agregarCarne    ( jTableCrearCarne.getValueAt(0, 0).toString(), // idCarne
-                                           "", // String ingredienteId
-                                           jTableCrearCarne.getValueAt(0, 1).toString(),  
-                                           Float.parseFloat(jTableCrearCarne.getValueAt(0, 4).toString()), //float precioporcion, 
-                                           0, //int cantidad, 
-                                           "", //String tipo, 
-                                           null, //byte[] foto, 
-                                           jTableCrearCarne.getValueAt(0, 2).toString(), //String presentacion, 
-                                           Float.parseFloat(jTableCrearCarne.getValueAt(0, 3).toString()),//float cantidadgrasas, 
-                                           jTableCrearCarne.getValueAt(0, 5).toString());
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonCrearCarneActionPerformed
-
-    private void jButtonEliminarIngredienteAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarIngredienteAdicionalActionPerformed
-        // TODO add your handling code here:
-        try {
-            controlAdicional.eliminarIngrediente(jComboBoxIngredienteAdicionalCrud);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jButtonEliminarIngredienteAdicionalActionPerformed
-
-    private void jButtonEliminarSalsasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarSalsasActionPerformed
-        // TODO add your handling code here:
-        try {
-            controlSalsa.eliminarSalsa(jComboBoxSalsaCrud);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    /*controlCarne *
-    controlPizzaBase *
-    controlVerdura *
-    controlSalsa *
-    controlAdicional * */
-    }//GEN-LAST:event_jButtonEliminarSalsasActionPerformed
-
-    private void jButtonCrearPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPizzaBaseActionPerformed
-        // TODO add your handling code here:
-        String id = jTableCrearPizzaBase.getModel().getValueAt(0, 0).toString();
-        String nomb = jTableCrearPizzaBase.getModel().getValueAt(0, 1).toString();
-        int tam = Integer.parseInt(jTableCrearPizzaBase.getModel().getValueAt(0, 2).toString());
-        String present = jTableCrearPizzaBase.getModel().getValueAt(0, 3).toString();
-        float price = Float.parseFloat(jTableCrearPizzaBase.getModel().getValueAt(0, 4).toString());
-        String foto = jTableCrearPizzaBase.getModel().getValueAt(0, 5).toString();
-        try {
-            controlPizzaBase.agregarPizzaBase(id, nomb, tam, present, price, new byte[1]);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }//GEN-LAST:event_jButtonCrearPizzaBaseActionPerformed
 
     private void jButtonActualizarPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarPizzaBaseActionPerformed
         // TODO add your handling code here:
@@ -1328,33 +981,35 @@ public final class Interfaz extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
- 
     }//GEN-LAST:event_jButtonActualizarPizzaBaseActionPerformed
+
+    private void jButtonCrearPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPizzaBaseActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearPizzaBase.getModel().getValueAt(0, 0).toString();
+        String nomb = jTableCrearPizzaBase.getModel().getValueAt(0, 1).toString();
+        int tam = Integer.parseInt(jTableCrearPizzaBase.getModel().getValueAt(0, 2).toString());
+        String present = jTableCrearPizzaBase.getModel().getValueAt(0, 3).toString();
+        float price = Float.parseFloat(jTableCrearPizzaBase.getModel().getValueAt(0, 4).toString());
+        String foto = jTableCrearPizzaBase.getModel().getValueAt(0, 5).toString();
+        try {
+            controlPizzaBase.agregarPizzaBase(id, nomb, tam, present, price, new byte[1]);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCrearPizzaBaseActionPerformed
+
+    private void jButtonEliminarPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarPizzaBaseActionPerformed
+        // TODO add your handling code here:
+        try {
+            controlPizzaBase.eliminarPizza(jComboBoxPizzaBaseCrud);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEliminarPizzaBaseActionPerformed
 
     private void jComboBoxPizzaBaseCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPizzaBaseCrudActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPizzaBaseCrudActionPerformed
-
-    private void jButtonCrearSalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearSalsaActionPerformed
-        // TODO add your handling code here:
-        String id = jTableCrearSalsas.getModel().getValueAt(0, 0).toString();
-        String azucar = jTableCrearSalsas.getModel().getValueAt(0, 1).toString();
-        int carbo = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 2).toString());
-        float grasa = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 3).toString());
-        float precio = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 4).toString());
-        String nombre = jTableCrearSalsas.getModel().getValueAt(0, 5).toString();
-        float pp = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 6).toString());
-        int cantidad = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 7).toString());
-        String tipo = jTableCrearSalsas.getModel().getValueAt(0, 8).toString();
-        String foto = jTableCrearSalsas.getModel().getValueAt(0, 9).toString();
-        
-        try {
-            controlSalsa.agregarSalsa(id, "S"+id, nombre, pp, cantidad, tipo, new byte[2], azucar, carbo, grasa);
-        } catch (Exception ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonCrearSalsaActionPerformed
 
     private void jButtonActualizarSalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarSalsaActionPerformed
         // TODO add your handling code here:
@@ -1368,7 +1023,7 @@ public final class Interfaz extends javax.swing.JFrame {
         int cantidad = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 7).toString());
         String tipo = jTableCrearSalsas.getModel().getValueAt(0, 8).toString();
         String foto = jTableCrearSalsas.getModel().getValueAt(0, 9).toString();
-        
+
         try {
             controlSalsa.actualizarSalsa(id, "S"+id, nombre, pp, cantidad, tipo, new byte[2], azucar, carbo, grasa);
         } catch (Exception ex) {
@@ -1376,27 +1031,43 @@ public final class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonActualizarSalsaActionPerformed
 
-    private void jComboBoxSalsaCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalsaCrudActionPerformed
+    private void jButtonCrearSalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearSalsaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxSalsaCrudActionPerformed
+        String id = jTableCrearSalsas.getModel().getValueAt(0, 0).toString();
+        String azucar = jTableCrearSalsas.getModel().getValueAt(0, 1).toString();
+        int carbo = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 2).toString());
+        float grasa = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 3).toString());
+        float precio = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 4).toString());
+        String nombre = jTableCrearSalsas.getModel().getValueAt(0, 5).toString();
+        float pp = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 6).toString());
+        int cantidad = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 7).toString());
+        String tipo = jTableCrearSalsas.getModel().getValueAt(0, 8).toString();
+        String foto = jTableCrearSalsas.getModel().getValueAt(0, 9).toString();
 
-    private void jButtonCrearVegetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearVegetalActionPerformed
-        // TODO add your handling code here:
-        String id = jTableCrearVegetales.getModel().getValueAt(0, 0).toString();
-        int carbo = Integer.parseInt(jTableCrearVegetales.getModel().getValueAt(0, 1).toString());
-        float precio = Float.parseFloat(jTableCrearVegetales.getModel().getValueAt(0, 2).toString());
-        String nombre = jTableCrearVegetales.getModel().getValueAt(0, 3).toString();
-        float pp = Float.parseFloat(jTableCrearVegetales.getModel().getValueAt(0, 4).toString());
-        int cantidad = Integer.parseInt(jTableCrearVegetales.getModel().getValueAt(0, 5).toString());
-        String tipo = jTableCrearVegetales.getModel().getValueAt(0, 6).toString();
-        String foto = jTableCrearVegetales.getModel().getValueAt(0, 7).toString();
-        
         try {
-            controlVerdura.agregarVegetal(id, "V"+id, nombre, pp, cantidad, tipo, new byte[1], carbo);
+            controlSalsa.agregarSalsa(id, "S"+id, nombre, pp, cantidad, tipo, new byte[2], azucar, carbo, grasa);
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButtonCrearVegetalActionPerformed
+    }//GEN-LAST:event_jButtonCrearSalsaActionPerformed
+
+    private void jButtonEliminarSalsasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarSalsasActionPerformed
+        // TODO add your handling code here:
+        try {
+            controlSalsa.eliminarSalsa(jComboBoxSalsaCrud);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*controlCarne *
+        controlPizzaBase *
+        controlVerdura *
+        controlSalsa *
+        controlAdicional * */
+    }//GEN-LAST:event_jButtonEliminarSalsasActionPerformed
+
+    private void jComboBoxSalsaCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalsaCrudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSalsaCrudActionPerformed
 
     private void jButtonActualizarVegetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarVegetalActionPerformed
         // TODO add your handling code here:
@@ -1408,13 +1079,89 @@ public final class Interfaz extends javax.swing.JFrame {
         int cantidad = Integer.parseInt(jTableCrearVegetales.getModel().getValueAt(0, 5).toString());
         String tipo = jTableCrearVegetales.getModel().getValueAt(0, 6).toString();
         String foto = jTableCrearVegetales.getModel().getValueAt(0, 7).toString();
-        
+
         try {
             controlVerdura.actualizarVegetal(id, "V"+id, nombre, pp, cantidad, tipo, new byte[1], carbo);
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonActualizarVegetalActionPerformed
+
+    private void jButtonCrearVegetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearVegetalActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearVegetales.getModel().getValueAt(0, 0).toString();
+        int carbo = Integer.parseInt(jTableCrearVegetales.getModel().getValueAt(0, 1).toString());
+        float precio = Float.parseFloat(jTableCrearVegetales.getModel().getValueAt(0, 2).toString());
+        String nombre = jTableCrearVegetales.getModel().getValueAt(0, 3).toString();
+        float pp = Float.parseFloat(jTableCrearVegetales.getModel().getValueAt(0, 4).toString());
+        int cantidad = Integer.parseInt(jTableCrearVegetales.getModel().getValueAt(0, 5).toString());
+        String tipo = jTableCrearVegetales.getModel().getValueAt(0, 6).toString();
+        String foto = jTableCrearVegetales.getModel().getValueAt(0, 7).toString();
+
+        try {
+            controlVerdura.agregarVegetal(id, "V"+id, nombre, pp, cantidad, tipo, new byte[1], carbo);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCrearVegetalActionPerformed
+
+    private void jButtonEliminarVegetalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarVegetalesActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            controlVerdura.eliminarVegetal(jComboBoxVegetalesCrud);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEliminarVegetalesActionPerformed
+
+    private void jButtonActualizarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarCarneActionPerformed
+        String id = jTableCrearCarne.getModel().getValueAt(0, 0).toString();
+        String pres = jTableCrearCarne.getModel().getValueAt(0, 1).toString();
+        float grasa = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 2).toString());
+        float price = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 3).toString());
+        String animal = jTableCrearCarne.getModel().getValueAt(0, 4).toString();
+        String nombre = jTableCrearCarne.getModel().getValueAt(0, 5).toString();
+        float pp = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 6).toString());
+        int cantidad = Integer.parseInt(jTableCrearCarne.getModel().getValueAt(0, 7).toString());
+        String tipo = jTableCrearCarne.getModel().getValueAt(0, 8).toString();
+        String foto = jTableCrearCarne.getModel().getValueAt(0, 9).toString();
+
+        try {
+            controlCarne.actualizarCarne(id, "C"+id, nombre, pp, cantidad, tipo, new byte[1], pres, grasa, animal);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonActualizarCarneActionPerformed
+
+    private void jButtonCrearCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearCarneActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearCarne.getModel().getValueAt(0, 0).toString();
+        String pres = jTableCrearCarne.getModel().getValueAt(0, 1).toString();
+        float grasa = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 2).toString());
+        float price = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 3).toString());
+        String animal = jTableCrearCarne.getModel().getValueAt(0, 4).toString();
+        String nombre = jTableCrearCarne.getModel().getValueAt(0, 5).toString();
+        float pp = Float.parseFloat(jTableCrearCarne.getModel().getValueAt(0, 6).toString());
+        int cantidad = Integer.parseInt(jTableCrearCarne.getModel().getValueAt(0, 7).toString());
+        String tipo = jTableCrearCarne.getModel().getValueAt(0, 8).toString();
+        String foto = jTableCrearCarne.getModel().getValueAt(0, 9).toString();
+
+        try {
+            controlCarne.agregarCarne(id, "C"+id, nombre, pp, cantidad, tipo, new byte[1], pres, grasa, animal);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCrearCarneActionPerformed
+
+    private void jButtonEliminarCarneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCarneActionPerformed
+        try {
+            // TODO add your handling code here:
+            controlCarne.eliminarCarne(jComboBoxCarneCrud);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonEliminarCarneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1424,30 +1171,24 @@ public final class Interfaz extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizarCarne;
-    private javax.swing.JButton jButtonActualizarIngredienteAdicional;
     private javax.swing.JButton jButtonActualizarPizzaBase;
     private javax.swing.JButton jButtonActualizarSalsa;
     private javax.swing.JButton jButtonActualizarVegetal;
     private javax.swing.JButton jButtonAnadirPizza;
     private javax.swing.JButton jButtonComprarGenerarFactura;
     private javax.swing.JButton jButtonCrearCarne;
-    private javax.swing.JButton jButtonCrearIngredienteAdicional;
     private javax.swing.JButton jButtonCrearPizzaBase;
     private javax.swing.JButton jButtonCrearSalsa;
     private javax.swing.JButton jButtonCrearVegetal;
     private javax.swing.JButton jButtonEliminarCarne;
-    private javax.swing.JButton jButtonEliminarIngredienteAdicional;
     private javax.swing.JButton jButtonEliminarPizzaBase;
     private javax.swing.JButton jButtonEliminarSalsas;
     private javax.swing.JButton jButtonEliminarVegetales;
     private javax.swing.JButton jButtonEscogerCarne;
-    private javax.swing.JButton jButtonEscogerIngrediente;
     private javax.swing.JButton jButtonEscogerSalsa;
     private javax.swing.JButton jButtonEscogerVerdura;
     private javax.swing.JComboBox jComboBoxCarne;
     private javax.swing.JComboBox jComboBoxCarneCrud;
-    private javax.swing.JComboBox jComboBoxIgredienteAdicional;
-    private javax.swing.JComboBox jComboBoxIngredienteAdicionalCrud;
     private javax.swing.JComboBox jComboBoxPizza;
     private javax.swing.JComboBox jComboBoxPizzaBaseCrud;
     private javax.swing.JComboBox jComboBoxSalsaCrud;
@@ -1459,13 +1200,10 @@ public final class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFotoPizzaBase;
     private javax.swing.JList jListItemsEscgidos;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanelActualizarCarne;
-    private javax.swing.JPanel jPanelActualizarIngredienteAdicional;
     private javax.swing.JPanel jPanelAdministrador;
     private javax.swing.JPanel jPanelCarne;
     private javax.swing.JPanel jPanelCliente;
     private javax.swing.JPanel jPanelCrearCarne;
-    private javax.swing.JPanel jPanelCrearIngredienteAdicional;
     private javax.swing.JPanel jPanelCrearPizzaBase;
     private javax.swing.JPanel jPanelCrearSalsas;
     private javax.swing.JPanel jPanelCrearVegetales;
@@ -1479,20 +1217,14 @@ public final class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSalsa;
     private javax.swing.JPanel jPanelVegetales;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPaneCrudPizza;
-    private javax.swing.JTable jTableActualizarCarne;
-    private javax.swing.JTable jTableActualizarSIngredienteAdicional;
     private javax.swing.JTable jTableCrearCarne;
-    private javax.swing.JTable jTableCrearIngredienteAdicional;
     private javax.swing.JTable jTableCrearPizzaBase;
     private javax.swing.JTable jTableCrearSalsas;
     private javax.swing.JTable jTableCrearVegetales;

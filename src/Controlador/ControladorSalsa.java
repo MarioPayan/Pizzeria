@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import ControladorJPA.Conexion;
-import ControladorJPA.SalsaJpaController;
+import persistencia.Conexion;
+import persistencia.SalsaJpaController;
 import Logica.Salsa;
 import java.util.List;
 import javax.swing.JComboBox;

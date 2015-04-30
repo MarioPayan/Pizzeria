@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorJPA;
+package persistencia;
 
 import ControladorJPA.exceptions.NonexistentEntityException;
 import ControladorJPA.exceptions.PreexistingEntityException;
-import Logica.Salsa;
+import Logica.Carne;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +21,9 @@ import javax.persistence.criteria.Root;
  *
  * @author kazemu
  */
-public class SalsaJpaController implements Serializable {
+public class CarneJpaController implements Serializable {
 
-    public SalsaJpaController(EntityManagerFactory emf) {
+    public CarneJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,16 +32,16 @@ public class SalsaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Salsa salsa) throws PreexistingEntityException, Exception {
+    public void create(Carne carne) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(salsa);
+            em.persist(carne);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findSalsa(salsa.getSalsaId()) != null) {
-                throw new PreexistingEntityException("Salsa " + salsa + " already exists.", ex);
+            if (findCarne(carne.getCarneId()) != null) {
+                throw new PreexistingEntityException("Carne " + carne + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -51,19 +51,19 @@ public class SalsaJpaController implements Serializable {
         }
     }
 
-    public void edit(Salsa salsa) throws NonexistentEntityException, Exception {
+    public void edit(Carne carne) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            salsa = em.merge(salsa);
+            carne = em.merge(carne);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = salsa.getSalsaId();
-                if (findSalsa(id) == null) {
-                    throw new NonexistentEntityException("The salsa with id " + id + " no longer exists.");
+                String id = carne.getCarneId();
+                if (findCarne(id) == null) {
+                    throw new NonexistentEntityException("The carne with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -79,14 +79,14 @@ public class SalsaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Salsa salsa;
+            Carne carne;
             try {
-                salsa = em.getReference(Salsa.class, id);
-                salsa.getSalsaId();
+                carne = em.getReference(Carne.class, id);
+                carne.getCarneId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The salsa with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The carne with id " + id + " no longer exists.", enfe);
             }
-            em.remove(salsa);
+            em.remove(carne);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -95,19 +95,19 @@ public class SalsaJpaController implements Serializable {
         }
     }
 
-    public List<Salsa> findSalsaEntities() {
-        return findSalsaEntities(true, -1, -1);
+    public List<Carne> findCarneEntities() {
+        return findCarneEntities(true, -1, -1);
     }
 
-    public List<Salsa> findSalsaEntities(int maxResults, int firstResult) {
-        return findSalsaEntities(false, maxResults, firstResult);
+    public List<Carne> findCarneEntities(int maxResults, int firstResult) {
+        return findCarneEntities(false, maxResults, firstResult);
     }
 
-    private List<Salsa> findSalsaEntities(boolean all, int maxResults, int firstResult) {
+    private List<Carne> findCarneEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Salsa.class));
+            cq.select(cq.from(Carne.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -119,20 +119,20 @@ public class SalsaJpaController implements Serializable {
         }
     }
 
-    public Salsa findSalsa(String id) {
+    public Carne findCarne(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Salsa.class, id);
+            return em.find(Carne.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getSalsaCount() {
+    public int getCarneCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Salsa> rt = cq.from(Salsa.class);
+            Root<Carne> rt = cq.from(Carne.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
