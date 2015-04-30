@@ -822,6 +822,11 @@ public final class Interfaz extends javax.swing.JFrame {
         }
 
         jButtonActualizarPizzaBase.setText("ACTUALIZAR");
+        jButtonActualizarPizzaBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarPizzaBaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelActualizarPizzaBaseLayout = new javax.swing.GroupLayout(jPanelActualizarPizzaBase);
         jPanelActualizarPizzaBase.setLayout(jPanelActualizarPizzaBaseLayout);
@@ -1409,6 +1414,23 @@ public final class Interfaz extends javax.swing.JFrame {
         }
                 
     }//GEN-LAST:event_jButtonCrearPizzaBaseActionPerformed
+
+    private void jButtonActualizarPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarPizzaBaseActionPerformed
+        // TODO add your handling code here:
+        String id = jTableActualizarPizzaBase.getModel().getValueAt(0, 0).toString();
+        String nomb = jTableActualizarPizzaBase.getModel().getValueAt(0, 1).toString();
+        int tam = Integer.parseInt(jTableActualizarPizzaBase.getModel().getValueAt(0, 2).toString());
+        String present = jTableActualizarPizzaBase.getModel().getValueAt(0, 3).toString();
+        float price = Float.parseFloat(jTableActualizarPizzaBase.getModel().getValueAt(0, 4).toString());
+        String foto = jTableActualizarPizzaBase.getModel().getValueAt(0, 5).toString();
+        
+        try {
+            controlPizzaBase.actualizarPizza(id, nomb, tam, present, price, new byte[1]);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButtonActualizarPizzaBaseActionPerformed
 
     /**
      * @param args the command line arguments
