@@ -325,7 +325,7 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelCrudCarneLayout.setHorizontalGroup(
             jPanelCrudCarneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrudCarneLayout.createSequentialGroup()
-                .addGap(0, 3, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanelCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelCrudCarneLayout.setVerticalGroup(
@@ -668,7 +668,9 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
         jScrollPane11.setViewportView(jTableActualizarSIngredienteAdicional);
-        jTableActualizarSIngredienteAdicional.getColumnModel().getColumn(5).setHeaderValue("FOTO");
+        if (jTableActualizarSIngredienteAdicional.getColumnModel().getColumnCount() > 0) {
+            jTableActualizarSIngredienteAdicional.getColumnModel().getColumn(5).setHeaderValue("FOTO");
+        }
 
         jButtonActualizarIngredienteAdicional.setText("ACTUALIZAR");
 
@@ -773,7 +775,7 @@ public final class Interfaz extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanelCrudIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,7 +817,9 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTableActualizarPizzaBase);
-        jTableActualizarPizzaBase.getColumnModel().getColumn(5).setHeaderValue("FOTO");
+        if (jTableActualizarPizzaBase.getColumnModel().getColumnCount() > 0) {
+            jTableActualizarPizzaBase.getColumnModel().getColumn(5).setHeaderValue("FOTO");
+        }
 
         jButtonActualizarPizzaBase.setText("ACTUALIZAR");
 
@@ -860,6 +864,11 @@ public final class Interfaz extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTableCrearPizzaBase);
 
         jButtonCrearPizzaBase.setText("CREAR");
+        jButtonCrearPizzaBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearPizzaBaseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCrearPizzaBaseLayout = new javax.swing.GroupLayout(jPanelCrearPizzaBase);
         jPanelCrearPizzaBase.setLayout(jPanelCrearPizzaBaseLayout);
@@ -919,7 +928,7 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelAdministrador.setLayout(jPanelAdministradorLayout);
         jPanelAdministradorLayout.setHorizontalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneCrudPizza, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneCrudPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 759, Short.MAX_VALUE)
         );
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1104,9 +1113,11 @@ public final class Interfaz extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTableFactura);
-        jTableFactura.getColumnModel().getColumn(0).setResizable(false);
-        jTableFactura.getColumnModel().getColumn(1).setResizable(false);
-        jTableFactura.getColumnModel().getColumn(2).setResizable(false);
+        if (jTableFactura.getColumnModel().getColumnCount() > 0) {
+            jTableFactura.getColumnModel().getColumn(0).setResizable(false);
+            jTableFactura.getColumnModel().getColumn(1).setResizable(false);
+            jTableFactura.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabelFatura.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         jLabelFatura.setText("FACTURA");
@@ -1382,6 +1393,22 @@ public final class Interfaz extends javax.swing.JFrame {
     controlSalsa *
     controlAdicional * */
     }//GEN-LAST:event_jButtonEliminarSalsasActionPerformed
+
+    private void jButtonCrearPizzaBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearPizzaBaseActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearPizzaBase.getModel().getValueAt(0, 0).toString();
+        String nomb = jTableCrearPizzaBase.getModel().getValueAt(0, 1).toString();
+        int tam = Integer.parseInt(jTableCrearPizzaBase.getModel().getValueAt(0, 2).toString());
+        String present = jTableCrearPizzaBase.getModel().getValueAt(0, 3).toString();
+        float price = Float.parseFloat(jTableCrearPizzaBase.getModel().getValueAt(0, 4).toString());
+        String foto = jTableCrearPizzaBase.getModel().getValueAt(0, 5).toString();
+        try {
+            controlPizzaBase.agregarPizzaBase(id, nomb, tam, present, price, new byte[1]);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }//GEN-LAST:event_jButtonCrearPizzaBaseActionPerformed
 
     /**
      * @param args the command line arguments
