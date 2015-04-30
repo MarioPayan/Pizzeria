@@ -25,7 +25,6 @@ public class ControladorCarne {
    
         conn = new Conexion();
         ControlCarneJPA = new CarneJpaController (conn.getConx());
-        ControlCarneJPA = new CarneJpaController (null); //------------------------------> eliminar
     }
     
      public String encontrarIdCarne (String nombreCarne) { 

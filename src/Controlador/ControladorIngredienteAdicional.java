@@ -24,7 +24,6 @@ public class ControladorIngredienteAdicional {
    
         conn = new Conexion();
         ControlCIngredienteJPA= new IngredienteadicionalJpaController (conn.getConx());
-        ControlCIngredienteJPA= new IngredienteadicionalJpaController (null); //------------------------------> eliminar
     }
     
      public String encontrarIngredinte (String nombreIngrediente) { 
