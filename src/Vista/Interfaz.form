@@ -104,7 +104,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanelCarne" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="170" max="32767" attributes="0"/>
+                              <EmptySpace pref="176" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -419,12 +419,12 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="546" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <EmptySpace pref="34" max="32767" attributes="0"/>
                                   <Component id="jPanelVegetales" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                                  <EmptySpace pref="154" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -699,7 +699,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="546" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -768,6 +768,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxSalsaCrudActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButtonEliminarSalsas">
                           <Properties>
@@ -794,13 +797,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane5" pref="699" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButtonActualizarSalsa" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jScrollPane5" pref="701" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -809,9 +806,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane5" min="-2" pref="49" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonActualizarSalsa" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -871,11 +866,6 @@
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Component class="javax.swing.JButton" name="jButtonActualizarSalsa">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
-                              </Properties>
-                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="jPanelCrearSalsas">
@@ -892,9 +882,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane6" pref="699" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane6" pref="701" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Component id="jButtonCrearSalsa" min="-2" pref="104" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                              <Component id="jButtonActualizarSalsa" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -906,8 +898,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane6" min="-2" pref="57" max="-2" attributes="0"/>
-                                      <EmptySpace pref="11" max="32767" attributes="0"/>
-                                      <Component id="jButtonCrearSalsa" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jButtonCrearSalsa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButtonActualizarSalsa" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -924,16 +919,46 @@
                                 <Component class="javax.swing.JTable" name="jTableCrearSalsas">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="5" rowCount="1">
+                                      <Table columnCount="10" rowCount="1">
                                         <Column editable="true" title="ID_SALSA" type="java.lang.String"/>
                                         <Column editable="true" title="AZUCARES" type="java.lang.String"/>
                                         <Column editable="true" title="CARBOHIDRATOS" type="java.lang.String"/>
                                         <Column editable="true" title="GRASA" type="java.lang.String"/>
                                         <Column editable="true" title="PRECIO" type="java.lang.Integer"/>
+                                        <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
+                                        <Column editable="true" title="PRECIO/PORCION" type="java.lang.Object"/>
+                                        <Column editable="true" title="CANTIDAD" type="java.lang.Object"/>
+                                        <Column editable="true" title="TIPO" type="java.lang.Object"/>
+                                        <Column editable="true" title="FOTO" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                           <Title/>
                                           <Editor/>
@@ -972,6 +997,17 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="CREAR"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCrearSalsaActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButtonActualizarSalsa">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonActualizarSalsaActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -1002,7 +1038,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanelCrudIngredienteAdicional" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1068,7 +1104,7 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButtonEliminarIngredienteAdicional">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="ELIMININAR SALSAS"/>
+                            <Property name="text" type="java.lang.String" value="ELIMININAR INGREDIENTE"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEliminarIngredienteAdicionalActionPerformed"/>
@@ -1336,7 +1372,7 @@
                               <Component id="jPanelActualizarPizzaBase" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jPanelCrearPizzaBase" min="-2" pref="133" max="-2" attributes="0"/>
-                              <EmptySpace pref="216" max="32767" attributes="0"/>
+                              <EmptySpace pref="225" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1353,6 +1389,9 @@
                           </StringArray>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxPizzaBaseCrudActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonEliminarPizzaBase">
                       <Properties>
@@ -1652,7 +1691,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="211" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

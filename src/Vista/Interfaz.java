@@ -129,11 +129,11 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelActualizarSalsas = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableActualizarSalsas = new javax.swing.JTable();
-        jButtonActualizarSalsa = new javax.swing.JButton();
         jPanelCrearSalsas = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableCrearSalsas = new javax.swing.JTable();
         jButtonCrearSalsa = new javax.swing.JButton();
+        jButtonActualizarSalsa = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelCrudIngredienteAdicional = new javax.swing.JPanel();
         jComboBoxIngredienteAdicionalCrud = new javax.swing.JComboBox();
@@ -333,7 +333,7 @@ public final class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanelCrudCarneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelCarne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPaneCrudPizza.addTab("CARNE", jPanelCrudCarne);
@@ -478,12 +478,12 @@ public final class Interfaz extends javax.swing.JFrame {
         );
         jPanelCrudVejetalesLayout.setVerticalGroup(
             jPanelCrudVejetalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 559, Short.MAX_VALUE)
             .addGroup(jPanelCrudVejetalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrudVejetalesLayout.createSequentialGroup()
-                    .addContainerGap(30, Short.MAX_VALUE)
+                    .addContainerGap(34, Short.MAX_VALUE)
                     .addComponent(jPanelVegetales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(150, Short.MAX_VALUE)))
+                    .addContainerGap(154, Short.MAX_VALUE)))
         );
 
         jTabbedPaneCrudPizza.addTab("VEGETALES", jPanelCrudVejetales);
@@ -491,6 +491,11 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelSalsa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jComboBoxSalsaCrud.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxSalsaCrud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSalsaCrudActionPerformed(evt);
+            }
+        });
 
         jButtonEliminarSalsas.setText("ELIMININAR SALSAS");
         jButtonEliminarSalsas.addActionListener(new java.awt.event.ActionListener() {
@@ -519,41 +524,33 @@ public final class Interfaz extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTableActualizarSalsas);
 
-        jButtonActualizarSalsa.setText("ACTUALIZAR");
-
         javax.swing.GroupLayout jPanelActualizarSalsasLayout = new javax.swing.GroupLayout(jPanelActualizarSalsas);
         jPanelActualizarSalsas.setLayout(jPanelActualizarSalsasLayout);
         jPanelActualizarSalsasLayout.setHorizontalGroup(
             jPanelActualizarSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelActualizarSalsasLayout.createSequentialGroup()
-                .addGroup(jPanelActualizarSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                    .addGroup(jPanelActualizarSalsasLayout.createSequentialGroup()
-                        .addComponent(jButtonActualizarSalsa)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelActualizarSalsasLayout.setVerticalGroup(
             jPanelActualizarSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelActualizarSalsasLayout.createSequentialGroup()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonActualizarSalsa)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(0, 56, Short.MAX_VALUE))
         );
 
         jPanelCrearSalsas.setBorder(javax.swing.BorderFactory.createTitledBorder("CREAR"));
 
         jTableCrearSalsas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID_SALSA", "AZUCARES", "CARBOHIDRATOS", "GRASA", "PRECIO"
+                "ID_SALSA", "AZUCARES", "CARBOHIDRATOS", "GRASA", "PRECIO", "NOMBRE", "PRECIO/PORCION", "CANTIDAD", "TIPO", "FOTO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -563,6 +560,18 @@ public final class Interfaz extends javax.swing.JFrame {
         jScrollPane6.setViewportView(jTableCrearSalsas);
 
         jButtonCrearSalsa.setText("CREAR");
+        jButtonCrearSalsa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearSalsaActionPerformed(evt);
+            }
+        });
+
+        jButtonActualizarSalsa.setText("ACTUALIZAR");
+        jButtonActualizarSalsa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarSalsaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCrearSalsasLayout = new javax.swing.GroupLayout(jPanelCrearSalsas);
         jPanelCrearSalsas.setLayout(jPanelCrearSalsasLayout);
@@ -570,9 +579,11 @@ public final class Interfaz extends javax.swing.JFrame {
             jPanelCrearSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearSalsasLayout.createSequentialGroup()
                 .addGroup(jPanelCrearSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
                     .addGroup(jPanelCrearSalsasLayout.createSequentialGroup()
                         .addComponent(jButtonCrearSalsa, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jButtonActualizarSalsa)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -580,8 +591,10 @@ public final class Interfaz extends javax.swing.JFrame {
             jPanelCrearSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCrearSalsasLayout.createSequentialGroup()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jButtonCrearSalsa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanelCrearSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCrearSalsa)
+                    .addComponent(jButtonActualizarSalsa))
                 .addContainerGap())
         );
 
@@ -628,7 +641,7 @@ public final class Interfaz extends javax.swing.JFrame {
         );
         jPanelCrudSalsasLayout.setVerticalGroup(
             jPanelCrudSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 559, Short.MAX_VALUE)
             .addGroup(jPanelCrudSalsasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrudSalsasLayout.createSequentialGroup()
                     .addContainerGap(30, Short.MAX_VALUE)
@@ -642,7 +655,7 @@ public final class Interfaz extends javax.swing.JFrame {
 
         jComboBoxIngredienteAdicionalCrud.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButtonEliminarIngredienteAdicional.setText("ELIMININAR SALSAS");
+        jButtonEliminarIngredienteAdicional.setText("ELIMININAR INGREDIENTE");
         jButtonEliminarIngredienteAdicional.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEliminarIngredienteAdicionalActionPerformed(evt);
@@ -782,7 +795,7 @@ public final class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelCrudIngredienteAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPaneCrudPizza.addTab("INGREDIENTE ADICIONAL", jPanel1);
@@ -790,6 +803,11 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelCrudPizzaBase.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jComboBoxPizzaBaseCrud.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxPizzaBaseCrud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPizzaBaseCrudActionPerformed(evt);
+            }
+        });
 
         jButtonEliminarPizzaBase.setText("ELIMININAR PIZZA BASE");
         jButtonEliminarPizzaBase.addActionListener(new java.awt.event.ActionListener() {
@@ -924,7 +942,7 @@ public final class Interfaz extends javax.swing.JFrame {
                 .addComponent(jPanelActualizarPizzaBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelCrearPizzaBase, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jTabbedPaneCrudPizza.addTab("PIZZA BASE", jPanelCrudPizzaBase);
@@ -933,7 +951,7 @@ public final class Interfaz extends javax.swing.JFrame {
         jPanelAdministrador.setLayout(jPanelAdministradorLayout);
         jPanelAdministradorLayout.setHorizontalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneCrudPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 759, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneCrudPizza, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
         jPanelAdministradorLayout.setVerticalGroup(
             jPanelAdministradorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1173,7 +1191,7 @@ public final class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabelFatura))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("CLIENTE ", jPanelCliente);
@@ -1412,6 +1430,7 @@ public final class Interfaz extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
                 
     }//GEN-LAST:event_jButtonCrearPizzaBaseActionPerformed
 
@@ -1429,8 +1448,57 @@ public final class Interfaz extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+ 
     }//GEN-LAST:event_jButtonActualizarPizzaBaseActionPerformed
+
+    private void jComboBoxPizzaBaseCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPizzaBaseCrudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPizzaBaseCrudActionPerformed
+
+    private void jButtonCrearSalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearSalsaActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearSalsas.getModel().getValueAt(0, 0).toString();
+        String azucar = jTableCrearSalsas.getModel().getValueAt(0, 1).toString();
+        int carbo = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 2).toString());
+        float grasa = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 3).toString());
+        float precio = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 4).toString());
+        String nombre = jTableCrearSalsas.getModel().getValueAt(0, 5).toString();
+        float pp = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 6).toString());
+        int cantidad = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 7).toString());
+        String tipo = jTableCrearSalsas.getModel().getValueAt(0, 8).toString();
+        String foto = jTableCrearSalsas.getModel().getValueAt(0, 9).toString();
+        
+        try {
+            controlSalsa.agregarSalsa(id, "S"+id, nombre, pp, cantidad, tipo, new byte[2], azucar, carbo, grasa);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCrearSalsaActionPerformed
+
+    private void jButtonActualizarSalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarSalsaActionPerformed
+        // TODO add your handling code here:
+        String id = jTableCrearSalsas.getModel().getValueAt(0, 0).toString();
+        String azucar = jTableCrearSalsas.getModel().getValueAt(0, 1).toString();
+        int carbo = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 2).toString());
+        float grasa = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 3).toString());
+        float precio = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 4).toString());
+        String nombre = jTableCrearSalsas.getModel().getValueAt(0, 5).toString();
+        float pp = Float.parseFloat(jTableCrearSalsas.getModel().getValueAt(0, 6).toString());
+        int cantidad = Integer.parseInt(jTableCrearSalsas.getModel().getValueAt(0, 7).toString());
+        String tipo = jTableCrearSalsas.getModel().getValueAt(0, 8).toString();
+        String foto = jTableCrearSalsas.getModel().getValueAt(0, 9).toString();
+        
+        try {
+            controlSalsa.actualizarSalsa(id, "S"+id, nombre, pp, cantidad, tipo, new byte[2], azucar, carbo, grasa);
+        } catch (Exception ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonActualizarSalsaActionPerformed
+
+    private void jComboBoxSalsaCrudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalsaCrudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSalsaCrudActionPerformed
 
     /**
      * @param args the command line arguments

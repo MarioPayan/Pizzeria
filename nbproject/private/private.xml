@@ -4,7 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/kazemu/NetBeansProjects/Pizzeria/src/Vista/Interfaz.java</file>
-            <file>file:/home/kazemu/NetBeansProjects/Pizzeria/src/Controlador/ControladorPizzaBase.java</file>
+            <file>file:/home/kazemu/NetBeansProjects/Pizzeria/src/Controlador/ControladorSalsa.java</file>
+            <file>file:/home/kazemu/NetBeansProjects/Pizzeria/src/ControladorJPA/SalsaJpaController.java</file>
         </group>
     </open-files>
 </project-private>

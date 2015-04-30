@@ -64,7 +64,7 @@ public class ControladorSalsa {
         ControlSalsaJPA.create(salsa);
     }
 
-    public void actualizarPizza(String salsaId, String ingredienteId, String nombre, float precioporcion, int cantidad, String tipo, 
+    public void actualizarSalsa(String salsaId, String ingredienteId, String nombre, float precioporcion, int cantidad, String tipo, 
                               byte[] foto, String azucares, int carbohidratos, float grasa) throws Exception{
     
        Salsa salsa = new Salsa (salsaId, ingredienteId,  nombre,  precioporcion,  cantidad, tipo, foto, azucares, carbohidratos,grasa);
